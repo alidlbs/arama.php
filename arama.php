@@ -34,25 +34,17 @@
       
 
 
-    <!-- <div class="row">
-        <div class="col-4">
-            <input type="text" placeholder="adi">
-   </div>
-        <div class="col-4">
-              <input type="text" placeholder="tur" >
-        </div>
+   
        
         <div class="col">
-             <button type="button" class="btn btn-danger">Danger</button> 
-        </div> -->
+             <button type="reset" class="btn btn-danger">Danger</button> 
+        </div> 
     
          
     </div>
     </form>
     <div class="row">
-        
-
-
+    
     <?php
 
 $baglanti=new mysqli("localhost","root",/*sifre*/"","alisveris");
@@ -76,6 +68,7 @@ if($baglanti->connect_error)
                 
                 $sorgucuk="SELECT * FROM urun WHERE (UrunTuru='$sec')";
             }
+            else{echo" <script>alert('bos gecme');</script>";}
 
         
     }
@@ -83,9 +76,15 @@ if($baglanti->connect_error)
   
  
 }
+if(isset($_POST['ara']))
+{
+
 $git=mysqli_query($baglanti,$sorgucuk);
 $deneme=mysqli_num_rows($git);
 if ($deneme==0) echo "Herhangi bir Kayıt Bulunamadı"; 
+
+
+
 else
 {
 echo $deneme." adet kayıt vardır..<br>";
@@ -109,7 +108,7 @@ echo "<table border='1' bordercolor='blue' bgcolor='#fffff' align='center'>
 <td>
    <font color='#1254F6'><b>Ürün Türü</b></font>
 </td>
-</tr>";
+</tr>";}
 while($str=mysqli_fetch_array($git))
 {
    echo "
@@ -136,10 +135,12 @@ while($str=mysqli_fetch_array($git))
 }
 echo "</table>";		
 }
+
 $baglanti->close();
 ?>
 
     </div>
+    <a href="mainPage.php"> geri don</a>
     </div>
    
  
